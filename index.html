@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gimkit Bot Spawner</title>
+</head>
+<body>
+<h1>Gimkit Bot Spawner</h1>
+<form id="spawnForm">
+  <label>Game Pin: <input type="text" id="gamePin" required></label><br><br>
+  <label>Number of Bots: <input type="number" id="amount" required></label><br><br>
+  <label>Name Pattern: <input type="text" id="namePattern" placeholder="Bot#" required></label><br><br>
+  <button type="submit">Spawn Bots</button>
+</form>
+<p id="status"></p>
+
+<script>
+document.getElementById('spawnForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const gamePin = document.getElementById('gamePin').value;
+  const amount = document.getElementById('amount').value;
+  const namePattern = document.getElementById('namePattern').value;
+
+  document.getElementById('status').textContent = 'Spawning bots...';
+
+  // Call your backend API
+  const response = await fetch('/spawn', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ gamePin, amount, namePattern }),
+  });
+
+  const result = await response.text();
+  document.getElementById('status').textContent = result;
+});
+</script>
+</body>
+</html>
