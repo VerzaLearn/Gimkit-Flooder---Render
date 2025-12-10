@@ -29,6 +29,9 @@ async function spawnBot(gamePin, name) {
   // Keep the bot alive or close
   // await browser.close();
 }
+curl -X POST https://gimkit-flooder-render.onrender.com \
+-H "Content-Type: application/json" \
+-d '{"gamePin":"131657","amount":2,"namePattern":"Bot#"}'
 
 app.post('https://gimkit-flooder-render.onrender.com', async (req, res) => {
   const { gamePin, amount, namePattern } = req.body;
