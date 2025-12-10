@@ -30,7 +30,7 @@ async function spawnBot(gamePin, name) {
   // await browser.close();
 }
 
-app.post('/spawn', async (req, res) => {
+app.post('https://gimkit-flooder-render.onrender.com', async (req, res) => {
   const { gamePin, amount, namePattern } = req.body;
   for (let i = 0; i < amount; i++) {
     const botName = namePattern.replace('#', i + 1);
